@@ -1,0 +1,148 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    padding: 15px;
+}
+
+section {
+    margin-bottom: 15px;
+}
+
+/* Button Styling */
+button {
+    padding: 8px 15px;
+    margin: 3px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 14px; /* Font size lebih kecil */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Map Styling */
+.map-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #28bd2d;
+    margin: 10px; /* Margin lebih kecil */
+}
+
+svg {
+    border: 3px solid black; /* Border lebih tipis */
+    background-color: #28bd2d;
+}
+
+.blue-area {
+    fill: #0000FF;
+}
+
+/* Robot Status Styling */
+.status-container p {
+    font-size: 16px; /* Font size lebih kecil */
+}
+
+/* Footer Styling */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+}
+
+/* Notification Styling */
+.notification {
+    display: none;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.notification.success {
+    background-color: #28a745;
+}
+
+.notification.error {
+    background-color: #dc3545;
+}
+
+/* Status Button Styling */
+.status-button {
+    padding: 6px 10px; /* Ukuran padding lebih kecil */
+    margin-left: 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 12px; /* Font size lebih kecil */
+    background-color: #ccc;
+    color: black;
+}
+
+.status-button.active {
+    background-color: #28a745;
+    color: white;
+}
+
+.status-button.inactive {
+    background-color: #dc3545;
+    color: white;
+}
+
+.status-button:hover {
+    opacity: 0.8;
+}
+
+/* Video and Color Detection Styling */
+.video {
+    border: 1px solid #333; /* Border lebih tipis */
+    display: block;
+    margin-bottom: 8px; /* Margin lebih kecil */
+    width: 100%; /* Membuat lebar video 100% dari elemen induk */
+    height: auto; /* Mempertahankan rasio aspek */
+}
+
+.colorOutput {
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Theater Mode */
+.theater-mode {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}

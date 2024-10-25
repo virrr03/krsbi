@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Team Selection</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="team-selection-container">
+        <h1>Select Your Robot Type</h1>
+        <form id="teamSelectionForm">
+            <label for="robotType">Choose your robot type:</label>
+            <select id="robotType" name="robotType" required>
+                <option value="">--Select Robot Type--</option>
+                <option value="humanoid">KRSBI-Humanoid</option>
+                <option value="beroda">KRSBI-Beroda</option>
+            </select>
+            <button type="button" id="loginButton">Login</button>
+            <div class="error-message" id="error-message"></div>
+        </form>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

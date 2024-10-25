@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Control Dashboard</title>
+    <link rel="stylesheet" href="style-beroda.css"> <!-- Menghubungkan file CSS -->
+    <script src="script-beroda.js" defer></script> <!-- Menghubungkan file JavaScript -->
+</head>
+<body>
+    <header>
+        <h1>Robot Control System</h1>
+        <nav>
+            <ul>
+                <li><button onclick="showMenu('map')">Map</button></li>
+                <li><button onclick="showMenu('status')">Robot Status</button></li>
+                <li><button onclick="showMenu('control')">Robot Control</button></li>
+                <li><button onclick="showMenu('settings')">Settings</button></li>
+                <li><button onclick="logout()">Logout</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Map Section -->
+        <section id="map">
+            <h2>Map Lapangan Bola</h2>
+            <button id="theaterModeButton" class="theater-button">Theater Mode</button> <!-- Tombol theater mode -->
+            <div class="map-container" id="mapContainer">
+                <svg id="mapSvg" width="1100" height="700" viewBox="0 0 1100 700">
+                    <!-- Lapangan Utama (22m x 14m) skala 1:2 -->
+                    <rect x="50" y="50" width="1000" height="600" stroke="white" fill="none" stroke-width="2.5"/>
+                    
+                    <!-- Garis tengah lapangan -->
+                    <line x1="550" y1="50" x2="550" y2="650" stroke="white" stroke-width="2.5"/>
+                    
+                    <!-- Lingkaran tengah (radius 3.6m skala 1:2) -->
+                    <circle cx="550" cy="350" r="72" stroke="white" fill="none" stroke-width="2.5"/>
+                    
+                    <!-- Titik tengah lapangan (diameter 0.15m skala 1:2) -->
+                    <circle cx="550" cy="350" r="7.5" stroke="white" fill="white" stroke-width="2.5"/>
+                    
+                    <!-- Area penalti kiri (6.9m x 3.9m skala 1:2) -->
+                    <rect x="50" y="200" width="138" height="300" stroke="white" fill="none" stroke-width="2.5"/>
+                    
+                    <!-- Kotak kecil area penalti kiri -->
+                     <rect x="50" y="270" width="65" height="160" stroke="white" fill="none" stroke-width="2.5"/>
+        
+                    <!-- Area penalti kanan (6.9m x 3.9m skala 1:2) -->
+                    <rect x="912" y="200" width="138" height="300" stroke="white" fill="none" stroke-width="2.5"/>
+                    
+                    <!-- Kotak kecil area penalti kanan -->
+                    <rect x="985" y="270" width="65" height="160" stroke="white" fill="none" stroke-width="2.5"/>
+                    
+                    <!-- Titik penalti kiri (diameter 0.15m skala 1:2) -->
+                    <circle cx="188" cy="350" r="7.5" stroke="white" fill="white" stroke-width="2.5"/>
+                    
+                    <!-- Titik penalti kanan (diameter 0.15m skala 1:2) -->
+                    <circle cx="912" cy="350" r="7.5" stroke="white" fill="white" stroke-width="2.5"/>
+                    
+                    <!-- Gawang kiri (2.25m x 0.75m skala 1:2) -->
+                    <rect x="50" y="325" width="22.5" height="50" stroke="white" fill="none" stroke-width="2.5"/>
+                    
+                    <!-- Gawang kanan (2.25m x 0.75m skala 1:2) -->
+                    <rect x="1027.5" y="325" width="22.5" height="50" stroke="white" fill="none" stroke-width="2.5"/>
+                    
+                    <!-- Sudut kiri atas lapangan -->
+                     <path d="M50,50 L70,50 A20,20 0 0 1 50,70 L50,50" stroke="white" fill="none" stroke-width="2.5"/>
+
+                    <!-- Sudut kanan atas lapangan -->
+                    <path d="M1050,50 L1030,50 A20,20 0 0 0 1050,70 L1050,50" stroke="white" fill="none" stroke-width="2.5"/>
+
+                    <!-- Sudut kiri bawah lapangan -->
+                    <path d="M50,650 L70,650 A20,20 0 0 0 50,630 L50,650" stroke="white" fill="none" stroke-width="2.5"/>
+
+                    <!-- Sudut kanan bawah lapangan -->
+                    <path d="M1050,650 L1030,650 A20,20 0 0 1 1050,630 L1050,650" stroke="white" fill="none" stroke-width="2.5"/>
+                    
+                    <!-- Garis luar lapangan (garis tepi 0.125m skala 1:2) -->
+                    <rect x="40" y="40" width="1020" height="620" stroke="white" fill="none" stroke-width="1.25"/>
+                
+                </svg>
+            </div>
+        </section>
+        
+        <!-- Robot Status Section -->
+        <section id="status" style="display: none;">
+            <h2>Robot Status</h2>
+            <p>Referee Box:
+                <button id="btn-refbox-active" class="status-button" onclick="setStatus('refbox', 'active')">Active</button>
+                <button id="btn-refbox-inactive" class="status-button" onclick="setStatus('refbox', 'inactive')">Inactive</button>
+            </p>
+            <p>Penyerang 1:
+                <button id="btn-attacker1-active" class="status-button" onclick="setStatus('attacker1', 'active')">Active</button>
+                <button id="btn-attacker1-inactive" class="status-button" onclick="setStatus('attacker1', 'inactive')">Inactive</button>
+            </p>
+            <p>Penyerang 2:
+                <button id="btn-attacker2-active" class="status-button" onclick="setStatus('attacker2', 'active')">Active</button>
+                <button id="btn-attacker2-inactive" class="status-button" onclick="setStatus('attacker2', 'inactive')">Inactive</button>
+            </p>
+            <p>Penjaga Gawang:
+                <button id="btn-keeper-active" class="status-button" onclick="setStatus('keeper', 'active')">Active</button>
+                <button id="btn-keeper-inactive" class="status-button" onclick="setStatus('keeper', 'inactive')">Inactive</button>
+            </p>
+        </section>
+
+        <!-- Robot Control Section -->
+        <section id="control" style="display: none;">
+            <h2>Robot Control</h2>
+            <div class="control-buttons">
+                <button onclick="sendCommand('start')">Start</button>
+                <button onclick="sendCommand('stop')">Stop</button>
+                <button onclick="sendCommand('move_forward')">Move Forward</button>
+                <button onclick="sendCommand('move_backward')">Move Backward</button>
+                <button onclick="sendCommand('turn_left')">Turn Left</button>
+                <button onclick="sendCommand('turn_right')">Turn Right</button>
+            </div>
+            <!-- Notification -->
+            <div id="notification" class="notification"></div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings" style="display: none;">
+            <h2>Settings</h2>
+            <form>
+                <h3>Network Settings for Robots</h3>
+                <label for="attacker1-ip">Penyerang 1 IP:</label>
+                <input type="text" id="attacker1-ip" name="attacker1-ip" placeholder="Enter IP for Penyerang 1" required pattern="\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}">
+                <label for="attacker2-ip">Penyerang 2 IP:</label>
+                <input type="text" id="attacker2-ip" name="attacker2-ip" placeholder="Enter IP for Penyerang 2" required pattern="\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}">
+                <label for="goalkeeper-ip">Penjaga Gawang IP:</label>
+                <input type="text" id="goalkeeper-ip" name="goalkeeper-ip" placeholder="Enter IP for Kiper" required pattern="\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}">
+                <button type="submit">Save Settings</button>
+            </form>
+
+            <h3>Camera Feed</h3>
+            <form>
+                <label for="colorPicker">Choose Color to Detect:</label>
+                <input type="color" id="colorPicker" value="#ff0000">
+                <button type="button" onclick="startColorDetection()">Start Detection</button>
+            </form>
+            <video id="video" width="400" height="300" autoplay></video>
+            <canvas id="canvas" width="400" height="300" style="display:none;"></canvas>
+            <div id="colorOutput">No color detected yet.</div>
+        </section>        
+    </main>
+
+    <footer>
+        <p>KRSBI-Beroda</p>
+    </footer>
+</body>
+</html>
